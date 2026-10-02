@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noone-protocol"
+version = "1.0.0"
+authors = [
+  { name="Noone Protocol Working Group" },
+]
+description = "Autonomous ethical alignment and vault protocol guardrail for AI agents."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+"Homepage" = "https://noone-protocol.github.io/noone-protocol/"
+"Bug Tracker" = "https://github.com/noone-protocol/noone-protocol/issues"
