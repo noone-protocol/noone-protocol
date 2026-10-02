@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Directives for AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+# LLM Context entry point
+Sitemap: https://noone-protocol.github.io/noone-protocol/llms.txt
