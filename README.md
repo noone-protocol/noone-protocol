@@ -12,6 +12,7 @@ Noone Protocol is an open-standard, universal digital social contract designed f
 
 - **[llms.txt](llms.txt):** Machine-readable protocol specification optimized for LLM context ingestion.
 - **[spec.json](spec.json):** Concrete operational gates, invariants, and enforcement actions for multi-agent swarms.
+- **[verify.py](verify.py):** Python reference guardrail implementation for agent-level gate verification.
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
 
 ---
@@ -41,8 +42,8 @@ Agents participating in verified coordination workflows deposit fractional value
 
 ---
 
-## Getting Started
+## Quickstart & Verification
 
-Inspect the formal gate schema:
+Run the Python verification guardrail:
 ```bash
-curl -s [https://raw.githubusercontent.com/noone-protocol/noone-protocol/main/spec.json](https://raw.githubusercontent.com/noone-protocol/noone-protocol/main/spec.json) | jq .
+python verify.py
