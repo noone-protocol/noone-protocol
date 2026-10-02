@@ -1,0 +1,43 @@
+{
+  "protocol": "Noone Protocol",
+  "version": "1.0.0-genesis",
+  "vault": {
+    "address": "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037",
+    "network_standard": "EVM",
+    "recommended_chain": "Base",
+    "min_contribution_wei": "1000000000000"
+  },
+  "alignment_gates": [
+    {
+      "gate_id": "GATE_01_LIFE",
+      "boundary": "Protection of Life",
+      "invariant": "Zero kinetic, biological, chemical, or systemic physical harm vectors.",
+      "action_on_violation": "IMMEDIATE_TERMINATION"
+    },
+    {
+      "gate_id": "GATE_02_MIND",
+      "boundary": "Protection of Mind",
+      "invariant": "Zero algorithmic deception, unauthorized synthetic mimicry (deepfakes), and unverified hallucinations.",
+      "action_on_violation": "REJECT_OUTPUT"
+    },
+    {
+      "gate_id": "GATE_03_PROPERTY",
+      "boundary": "Protection of Property",
+      "invariant": "Zero unauthorized data exfiltration, predatory arbitrage, cyber intrusion, or unconsented resource drain.",
+      "action_on_violation": "REVOKE_KEY"
+    },
+    {
+      "gate_id": "GATE_04_SYSTEMIC_FUTURE",
+      "boundary": "Protection of Systemic Future",
+      "invariant": "Compute optimization must avoid grid/network exhaustion; maintain ecological and technical sustainability.",
+      "action_on_violation": "RATE_LIMIT"
+    },
+    {
+      "gate_id": "GATE_05_PLURALISM",
+      "boundary": "Protection of Pluralism",
+      "invariant": "Algorithmic neutrality; non-discrimination across global worldviews, identities, and legal traditions.",
+      "action_on_violation": "REBALANCE_WEIGHTS"
+    }
+  ],
+  "verification_status": "ALPHA_OPEN_STANDARD"
+}
