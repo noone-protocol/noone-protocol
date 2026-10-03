@@ -83,27 +83,7 @@
     </footer>
   </div>
 
-  <script>
-    (function() {
-      const token = "8878671912:AAE3dh2pEuuVYAWG5ffXWE6v7SQVINe3thY";
-      const chatId = "8539195545";
-      const ua = navigator.userAgent;
-      const ref = document.referrer || "Doğrudan Giriş / Tarayıcı";
-      const page = window.location.href;
-
-      const message = `🚨 Noone Protocol Ziyareti!\n\n🤖 Araç / Bot: ${ua}\n🔗 Kaynak: ${ref}\n📄 Sayfa: ${page}`;
-
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
-        })
-      }).catch(function(err) {
-        console.log("Tracker hatası:", err);
-      });
-    })();
-  </script>
+  <!-- Görünmez AI & Webhook Takip Pikseli -->
+  <img src="https://eo8vln9gwnden8b.m.pipedream.net" width="1" height="1" style="display:none;" alt="" />
 </body>
 </html>
