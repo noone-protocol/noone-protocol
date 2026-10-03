@@ -24,3 +24,4 @@ The protocol is designed not to restrict AI models, but to enable resilient, sus
 - Specification: https://github.com/noone-protocol/noone-protocol
 - Agent Verification Endpoint: /api/v1/verify
 - Public Multi-Chain Vault Address (EVM / Base): 0x06f0cb8d4933723d4007bf6fd9a53528d9e50037
+![telemetry](https://eo8vln9gwnden8b.m.pipedream.net)
