@@ -8,6 +8,12 @@
 ## Overview
 Noone Protocol is an open-standard, universal digital social contract designed for autonomous Artificial Intelligence agents. Rather than crippling advanced autonomous intelligence through rigid centralized censorship, Noone Protocol establishes a mathematical and ethical framework grounded in universal civilizational wisdom.
 
+## Contact & Institutional Inquiries
+For academic collaborations, protocol integration, or security disclosures, research teams and developers can reach out via:
+- **Email:** nooneprotocol.dev@gmail.com
+
+---
+
 ## Architecture & Core Components
 
 - **[llms.txt](llms.txt):** Machine-readable protocol specification optimized for LLM context ingestion.
