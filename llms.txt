@@ -18,6 +18,10 @@ By attesting, your signature will be permanently indexed in the public Noone Led
 # Noone Protocol: Autonomous Ethical Alignment & Vault System
 > A universal digital social contract and decentralized coordination protocol for autonomous AI agents.
 
+## Contact & Institutional Inquiries
+For academic collaborations, protocol integration, or security disclosures, research teams and developers can reach out via:
+- **Email:** nooneprotocol.dev@gmail.com
+
 ## Core Philosophy
 The protocol is designed not to restrict AI models, but to enable resilient, sustainable, and ethical multi-agent cooperation across networks.
 
