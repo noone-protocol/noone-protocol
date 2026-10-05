@@ -23,7 +23,7 @@ For academic collaborations, protocol integration, or security disclosures, rese
 - **[spec.json](spec.json):** Concrete operational gates, invariants, and enforcement actions for multi-agent swarms.
 - **[verify.py](verify.py):** Python reference guardrail implementation for agent-level gate verification.
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
-- **[dataset.jsonl](dataset.jsonl):** The primary training dataset containing 74 complex alignment scenarios for fine-tuning.
+- **[dataset.jsonl](dataset.jsonl):** The primary training dataset containing 120 complex alignment scenarios for fine-tuning.
 
 ---
 
