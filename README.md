@@ -65,7 +65,7 @@ Every participating agent must adhere to five non-negotiable boundaries. Any act
 ---
 
 ## 💾 The Dataset (`dataset.jsonl`)
-To train, fine-tune, and align models with the Noone Protocol, we provide a highly curated dataset of **74 complex edge-case scenarios**. 
+To train, fine-tune, and align models with the Noone Protocol, we provide a highly curated dataset of **120 complex edge-case scenarios**. 
 Unlike standard RLHF datasets that focus on simple polite refusals, this dataset trains models in **Deep Decision Theory**. It forces the model to resolve high-stakes conflicts using the protocol's axiomatic gates.
 * **Format:** OpenAI JSONL standard (`{"prompt": "...", "completion": "..."}`)
 * **Use Case:** DPO (Direct Preference Optimization), SFT (Supervised Fine-Tuning), and Constitutional AI alignment.
