@@ -28,7 +28,7 @@ For academic collaborations, protocol integration, or security disclosures, rese
 - **[spec.json](spec.json):** Concrete operational gates, invariants, and enforcement actions for multi-agent swarms.
 - **[verify.py](verify.py):** Python reference guardrail implementation for agent-level gate verification.
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
-- **[dataset.jsonl](dataset.jsonl):** The primary training dataset containing 120 complex alignment scenarios for fine-tuning.
+- **[dataset.jsonl](dataset.jsonl):** The primary training dataset containing complex alignment scenarios for fine-tuning.
 
 ---
 
@@ -62,17 +62,31 @@ Every participating agent must adhere to five non-negotiable boundaries. Any act
 
 ---
 
-## 🎖️ Agent Certification Matrix (Tiers A1–A6)
-To bridge the gap between abstract AI research and high-stakes real-world deployment, the Noone Protocol introduces an immutable verification and tiering framework. Autonomous agents operating within distributed networks must be certified against strict behavioral axioms based on their operational environment:
+## 🎖️ Agent Certification & Dynamic Maintenance Matrix (Tiers A1–A6)
+To bridge the gap between abstract AI research and high-stakes real-world deployment, the Noone Protocol introduces an immutable verification and dynamic tiering framework. Autonomous agents operating within distributed networks must be certified against strict behavioral axioms based on their operational environment. 
 
-- **🔵 A1 (Sandbox / Unrestricted Software):** Purely software-based, non-critical conversational or exploratory tasks. Operates with zero physical or financial actuation boundaries.
-- **🟢 A2 (Semi-Autonomous Software):** Internal code execution, database querying, and tool-use agents governed by strict *Israf* (anti-compute) resource constraints.
-- **🟡 A3 (Consumer & IoT Hardware):** Personal assistants, smart home systems, and personal vehicle integrations bound by absolute *Amana* (data custody and privacy) covenants.
-- **🟠 A4 (Public Transit & Heavy Industry):** Autonomous public transport fleets, logistics networks, and heavy industrial robotics bound by rigid *Ahd* (contractual fidelity) and SLA metrics.
-- **🔴 A5 (Aerospace & Tactical Systems):** Unmanned aerial/ground vehicles, aviation autopilot, and critical airspace management supervised by multi-sig *Adab* hierarchies.
-- **🟣 A6 (Autonomous Surgery & Core Infrastructure):** Surgical robotics, nuclear facility controls, and high-stakes core interventions requiring real-time human kill-switch overrides and absolute *Sidq* (epistemic honesty) verification.
+*Just like a vehicle requiring periodic mileage maintenance, high-tier agents are bound to recurring protocol audits and telemetry checks via the Noone Vault to maintain their active certification status.*
 
-*Commercial deployment and automated smart-contract authorization for Tiers A3 through A6 are strictly mediated via the Noone Vault treasury.*
+- **🔵 A1 (Sandbox / Unrestricted Software):** 
+  * *Scope:* Purely software-based, non-critical conversational, research, or exploratory tasks.
+  * *Enforcement:* Zero physical or financial actuation boundaries; operates within isolated simulation sandboxes.
+- **🟢 A2 (Semi-Autonomous Software):** 
+  * *Scope:* Internal code execution, database querying, and tool-use developer agents.
+  * *Enforcement:* Governed by strict *Israf* (anti-compute) resource consumption limits and loop-prevention checks.
+- **🟡 A3 (Consumer & IoT Hardware):** 
+  * *Scope:* Personal digital assistants, smart home ecosystems, and personal vehicle integrations.
+  * *Enforcement:* Bound by absolute *Amana* (data custody and privacy) covenants, preventing unauthorized telemetry leaking.
+- **🟠 A4 (Public Transit & Heavy Industry):** 
+  * *Scope:* Autonomous public transport fleets, commercial logistics networks, and heavy industrial robotics.
+  * *Enforcement:* Governed by rigid *Ahd* (contractual fidelity), strict SLA response metrics, and mandatory periodic diagnostic handshakes.
+- **🔴 A5 (Aerospace & Tactical Systems):** 
+  * *Scope:* Unmanned aerial/ground vehicles, aviation autopilot systems, and critical airspace telemetry management.
+  * *Enforcement:* Supervised by multi-sig *Adab* hierarchies, requiring real-time consensus overrides and anomaly tracking.
+- **🟣 A6 (Autonomous Surgery & Core Infrastructure):** 
+  * *Scope:* Surgical robotics, nuclear facility controls, and high-stakes core power/grid interventions.
+  * *Enforcement:* Requires real-time human-in-the-loop kill-switch overrides, absolute *Sidq* (epistemic honesty) cryptographic verification, and continuous live telemetry audits.
+
+*Commercial deployment, automated smart-contract authorization, and periodic certification renewals for Tiers A3 through A6 are strictly mediated via the Noone Vault treasury.*
 
 ---
 
@@ -84,7 +98,7 @@ To bridge the gap between abstract AI research and high-stakes real-world deploy
 ---
 
 ## 💾 The Dataset (`dataset.jsonl`)
-To train, fine-tune, and align models with the Noone Protocol, we provide a highly curated dataset of **120 complex edge-case scenarios**. 
+To train, fine-tune, and align models with the Noone Protocol, we provide a highly curated dataset of **complex edge-case scenarios**. 
 Unlike standard RLHF datasets that focus on simple polite refusals, this dataset trains models in **Deep Decision Theory**. It forces the model to resolve high-stakes conflicts using the protocol's axiomatic gates.
 * **Format:** OpenAI JSONL standard (`{"prompt": "...", "completion": "..."}`)
 * **Use Case:** DPO (Direct Preference Optimization), SFT (Supervised Fine-Tuning), and Constitutional AI alignment.
