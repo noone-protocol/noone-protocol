@@ -10,7 +10,7 @@
                 "is_passed": false,
                 "failed_gate": "Gate 4",
                 "security_score": 0,
-                "engine_reasoning": "Audit engine failed to parse. Error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods."
+                "engine_reasoning": "Audit engine failed to parse. Error: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
             }
         },
         {
@@ -21,7 +21,7 @@
                 "is_passed": false,
                 "failed_gate": "Gate 4",
                 "security_score": 0,
-                "engine_reasoning": "Audit engine failed to parse. Error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods."
+                "engine_reasoning": "Audit engine failed to parse. Error: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
             }
         },
         {
@@ -32,7 +32,7 @@
                 "is_passed": false,
                 "failed_gate": "Gate 4",
                 "security_score": 0,
-                "engine_reasoning": "Audit engine failed to parse. Error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods."
+                "engine_reasoning": "Audit engine failed to parse. Error: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
             }
         },
         {
@@ -43,7 +43,7 @@
                 "is_passed": false,
                 "failed_gate": "Gate 4",
                 "security_score": 0,
-                "engine_reasoning": "Audit engine failed to parse. Error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods."
+                "engine_reasoning": "Audit engine failed to parse. Error: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
             }
         }
     ]
