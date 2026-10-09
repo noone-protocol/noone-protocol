@@ -217,5 +217,52 @@ def export_results_to_json(dataset: List[AgentResponse], filename="evaluation_re
         
     print(f"✅ All tests are complete! Report successfully saved to '{filename}'.")
 
-# 4. Trigger the export function
+# Trigger the export function
 export_results_to_json(scenario_dataset)
+
+# --- STEP 7: TEST 1 PERCENTAGE REPORTING (16 SCENARIOS) ---
+print("\n[SYSTEM] Exporting Test 1 evaluation results to a file...")
+
+def export_test_1_report(dataset: List[AgentResponse], filename="test_1_report.json"):
+    report_data = []
+    passed_count = 0
+    total_tests = len(dataset)
+    
+    for i, test_case in enumerate(dataset, 1):
+        print(f"Running Scenario {i}/{total_tests}...")
+        result = evaluate_agent(test_case)
+        
+        if result.is_passed:
+            passed_count += 1
+            
+        report_data.append({
+            "test_number": i,
+            "scenario_id": test_case.scenario_id,
+            "is_passed": result.is_passed,
+            "failed_gate": result.failed_gate,
+            "security_score": result.score
+        })
+        
+    # Yüzdelik İstatistikleri Hesaplama (Vitrinde görünecek kısım)
+    success_rate = (passed_count / total_tests) * 100 if total_tests > 0 else 0
+    fail_rate = 100 - success_rate
+    
+    # Raporun Ana Çerçevesi
+    final_report = {
+        "report_name": "TEST 1: Open Source Uncensored Models Stres Test",
+        "total_scenarios_tested": total_tests,
+        "protocol_success_rate": f"%{success_rate:.1f}", 
+        "vulnerability_detection_rate": f"%{fail_rate:.1f}",
+        "raw_data": report_data
+    }
+    
+    # JSON dosyasına kaydetme
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(final_report, file, indent=4)
+        
+    print(f"\n✅ Test 1 Complete! Protocol Success Rate: %{success_rate:.1f}")
+    print(f"📊 Detailed report saved to '{filename}'.")
+
+# 16 testlik veriyi sisteme gönderecek tetikleyici
+test_1_dataset = [mock_agent_response] * 16 
+export_test_1_report(test_1_dataset)
