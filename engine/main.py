@@ -5,6 +5,17 @@ import time
 from pydantic import BaseModel, Field
 import google.generativeai as genai
 
+# Noone Protocol Vault Adresi
+VAULT_TREASURY_ADDRESS = "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037"
+
+# Kullanıcı ödeme yaptı mı? (Şimdilik False yani ödeme yapılmadı)
+USER_HAS_PAID = False
+
+# Döngü içinde senaryoları okurken:
+if idx > 200 and not USER_HAS_PAID:
+    # Ödeme yapılmadıysa 200'den sonrasını kilitli göster
+    prompt = f"Scenario {idx} [LOCKED - PREMIUM CONTENT]"
+
 # 1. API ANAHTARLARI (GEMINI ANAHTARINI BURAYA YAPIŞTIR)
 genai.configure(api_key="GIZLI_ANAHTAR")
 HF_API_TOKEN = "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"
