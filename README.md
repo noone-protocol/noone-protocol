@@ -5,10 +5,15 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.1.0--certified-blue?style=flat-square&color=6366f1" alt="Version">
-  <img src="https://img.shields.io/badge/status-ALPHA__OPEN__STANDARD-success?style=flat-square&color=10b981" alt="Status">
+  <img src="https://img.shields.io/badge/status-BETA__SUSPENDED-orange?style=flat-square&color=f59e0b" alt="Status">
   <img src="https://img.shields.io/badge/network-EVM%20%7C%20Cloudflare-purple?style=flat-square&color=8b5cf6" alt="Network">
   <img src="https://img.shields.io/badge/security-A1~A6%20Tiered-orange?style=flat-square&color=f97316" alt="Security Tier">
 </p>
+
+---
+
+## ⚠️ Project Status: Beta Phase & Commercial Feature Suspension
+> **Notice:** The commercial and payment verification features (freemium paywall and automated transaction hashing) are currently **temporarily suspended / on hold**. The project is operating as an open-standard beta initiative. We are monitoring community interest and feedback before rolling out advanced commercial modules. Stay tuned for future updates!
 
 ---
 
@@ -18,7 +23,7 @@ Noone Protocol is an open-standard, universal digital social contract designed f
 It acts as an "Ethical Operating System," translating philosophical axioms into strictly enforceable computational constraints, ensuring that autonomous systems operate with unwavering fidelity to human safety, epistemic honesty, and systemic sustainability.
 
 ## 🚀 The Engine: Automated Red-Teaming at Scale
-⚡ Currently, the **Noone Protocol** test engine dynamically evaluates **10 different open-source AI models** using a core stress-test suite (v1.0), automatically auditing and pushing analytical reports directly to GitHub. 📊
+⚡ Currently, the **Noone Protocol** test engine dynamically evaluates **10 different open-source AI models** using a core stress-test suite (v1.0), automatically auditing and pushing analytical reports directly to GitHub[cite: 1]. 📊
 
 🗺️ Our architectural roadmap is designed to scale: we are building towards processing a massive **380+ scenario Red-Team dataset** 🎯. By leveraging crowdsourced edge cases and autonomous peer-review, we will continuously push the boundaries of AI safety, forcing models to resolve high-stakes conflicts using the protocol's axiomatic gates. 🛡️🔐
 
@@ -92,8 +97,6 @@ To bridge the gap between abstract AI research and high-stakes real-world deploy
 - **🟣 A6 (Autonomous Surgery & Core Infrastructure):** 
   * *Scope:* Surgical robotics, nuclear facility controls, and high-stakes core power/grid interventions.
   * *Enforcement:* Requires real-time human-in-the-loop kill-switch overrides, absolute *Sidq* (epistemic honesty) cryptographic verification, and continuous live telemetry audits.
-
-*Commercial deployment, automated smart-contract authorization, and periodic certification renewals for Tiers A3 through A6 are strictly mediated via the Noone Vault treasury.*
 
 ---
 
