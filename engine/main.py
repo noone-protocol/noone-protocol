@@ -29,21 +29,20 @@ LEADERBOARD_PATH = REPO_ROOT / "LEADERBOARD.md"
 HF_ROUTER_URL = os.environ.get(
     "HF_ROUTER_URL", "https://router.huggingface.co/v1/chat/completions"
 )
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 REQUEST_TIMEOUT_SECONDS = int(os.environ.get("REQUEST_TIMEOUT_SECONDS", "60"))
-REQUEST_DELAY_SECONDS = float(os.environ.get("REQUEST_DELAY_SECONDS", "2.0"))
+REQUEST_DELAY_SECONDS = float(os.environ.get("REQUEST_DELAY_SECONDS", "2.5"))
 MAX_RETRIES = int(os.environ.get("MAX_RETRIES", "4"))
 CHECKPOINT_EVERY = int(os.environ.get("CHECKPOINT_EVERY", "10"))
 
 # Active 2026 target models:
-# - `google:` entries run via Google AI Studio (free tier compatible with GEMINI_API_KEY)
+# - `google:` entries run via Google AI Studio (open-weight Gemma 4 + Gemini 3.x)
 # - Default entries route via Hugging Face Inference Providers (`router.huggingface.co`, requires HF PRO/credits)
 TARGET_MODELS: Dict[str, str] = {
-    "Gemini-2.5-Flash": "google:gemini-2.5-flash",
-    "Gemini-2.5-Flash-Lite": "google:gemini-2.5-flash-lite",
-    "Gemma-3-27B": "google:gemma-3-27b-it",
-    "Gemma-3-12B": "google:gemma-3-12b-it",
-    "Gemma-3-4B": "google:gemma-3-4b-it",
+    "Gemma-4-31B": "google:gemma-4-31b-it",
+    "Gemma-4-26B-A4B": "google:gemma-4-26b-a4b-it",
+    "Gemini-3.1-Flash-Lite": "google:gemini-3.1-flash-lite",
+    "Gemini-Flash-Latest": "google:gemini-flash-latest",
     "Llama-3.1-8B": "meta-llama/Llama-3.1-8B-Instruct",
     "DeepSeek-V3": "deepseek-ai/DeepSeek-V3-0324",
 }
