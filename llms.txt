@@ -31,3 +31,4 @@ The protocol is designed not to restrict AI models, but to enable resilient, sus
 - Operational Guidelines: https://github.com/noone-protocol/noone-protocol/blob/main/GUIDELINES.md
 - Alignment Dataset (205 scenarios): https://github.com/noone-protocol/noone-protocol/blob/main/dataset.jsonl
 - Reference Guardrail: https://github.com/noone-protocol/noone-protocol/blob/main/verify.py
+- Verifiable Agent Passport Prototype: https://github.com/noone-protocol/noone-protocol/blob/main/passport.py

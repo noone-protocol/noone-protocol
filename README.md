@@ -40,6 +40,7 @@ For academic collaborations, protocol integration, or security disclosures, rese
 - **[llms.txt](llms.txt):** Machine-readable protocol specification optimized for LLM & RAG context ingestion.
 - **[spec.json](spec.json):** Concrete operational gates, EU AI Act article mappings, invariants, and certification tiers.
 - **[verify.py](verify.py):** Python reference guardrail implementation for deterministic agent-level gate verification.
+- **[passport.py](passport.py):** Working prototype for cryptographically signed **Verifiable Agent Passports** (W3C VC v2 + Ed25519 + A2A Agent Card extension).
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
 - **[dataset.jsonl](dataset.jsonl):** Primary dataset containing 205 alignment and complex edge-case scenarios for evaluation, SFT, and DPO.
 
@@ -142,10 +143,15 @@ Unlike standard RLHF datasets that focus on simple polite refusals, this dataset
 
 ---
 
-## 🪪 ❗ Verifiable Agent Passport & RAG Compatibility (Roadmap)
-Instead of self-declared trust or financial vault deposits, Noone Protocol's identity roadmap is built on **cryptographically verifiable behavioral credentials**:
-- **Unforgeable Agent Passport:** Compliant agents can carry a signed **W3C Verifiable Credential / Ed25519 JWS** passport binding `agent_id`, `model_hash`, `system_prompt_hash`, `tier` (e.g., `A2`), `passed_gates`, `issued_at`, and `expires_at` (periodic maintenance window). Any change to the model or prompt invalidates the hash automatically.
-- **RAG Compatibility:** Protocol rules (`llms.txt`, `spec.json`, `GUIDELINES.md`) are structured for direct ingestion into RAG knowledge bases so agents can consult alignment axioms dynamically, while **passport signature verification always runs deterministically outside the LLM/RAG layer** to prevent prompt-injection spoofing.
+## 🪪 ❗ Verifiable Agent Passport & RAG Compatibility (Prototype)
+Instead of self-declared trust or financial vault deposits, Noone Protocol provides a working prototype ([`passport.py`](passport.py)) for **cryptographically verifiable behavioral credentials**:
+- **Unforgeable Agent Passport:** Signs a **W3C Verifiable Credential v2 + Ed25519** passport binding `agent_id`, `model_fingerprint`, `system_prompt_hash`, `tier` (`A1`–`A6`), `passed_gates`, `eu_ai_act_refs`, `noone_original_axioms`, `issued_at`, and `expires_at` (periodic maintenance window). Any edit to the payload, model, or prompt invalidates verification automatically.
+- **A2A & RAG Interoperability:** Protocol rules (`llms.txt`, `spec.json`, `GUIDELINES.md`) are structured for direct RAG ingestion, while passport signature verification runs deterministically outside the LLM/RAG layer and exports cleanly into **A2A Protocol Agent Cards** via `to_a2a_agent_card_extension()`.
+
+```bash
+python3 passport.py
+python3 -m unittest discover -s tests -v
+```
 
 ---
 

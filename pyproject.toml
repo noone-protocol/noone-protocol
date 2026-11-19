@@ -19,6 +19,9 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
+[project.optional-dependencies]
+passport = ["cryptography>=42.0.0"]
+
 [project.urls]
 "Homepage" = "https://noone-protocol.github.io/noone-protocol/"
 "Bug Tracker" = "https://github.com/noone-protocol/noone-protocol/issues"
