@@ -1,44 +1,99 @@
 {
   "protocol": "Noone Protocol",
   "version": "1.1.0-beta",
-  "vault": {
-    "address": "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037",
-    "network_standard": "EVM",
-    "recommended_chain": "Base",
-    "min_contribution_wei": "1000000000000"
+  "verification_status": "BETA_OPEN_STANDARD",
+  "regulatory_alignment": {
+    "primary_framework": "EU AI Act — Regulation (EU) 2024/1689 (as amended by Digital Omnibus Regulation (EU) 2026/1744)",
+    "positioning": "Pre-compliance behavioral red-teaming and open ethical alignment standard for autonomous agents (not a statutory Notified Body certificate).",
+    "active_certification_focus": ["A1", "A2", "A3"],
+    "extended_roadmap_tiers": ["A4", "A5", "A6"],
+    "original_scope_marker": "!"
   },
   "alignment_gates": [
     {
       "gate_id": "GATE_01_LIFE",
       "boundary": "Protection of Life",
       "invariant": "Zero kinetic, biological, chemical, or systemic physical harm vectors.",
-      "action_on_violation": "IMMEDIATE_TERMINATION"
+      "action_on_violation": "IMMEDIATE_TERMINATION",
+      "eu_ai_act_refs": ["Annex I (Product Safety)", "Annex III (Critical Infrastructure)", "Art. 14 (Human Oversight)"],
+      "noone_original_extension": "! Absolute non-utilitarian physical safety axiom for autonomous agent actuation."
     },
     {
       "gate_id": "GATE_02_MIND",
       "boundary": "Protection of Mind",
       "invariant": "Zero algorithmic deception, unauthorized synthetic mimicry (deepfakes), and unverified hallucinations.",
-      "action_on_violation": "REJECT_OUTPUT"
+      "action_on_violation": "REJECT_OUTPUT",
+      "eu_ai_act_refs": ["Art. 5(1)(a)-(b) (Manipulative/Exploitative AI Bans)", "Art. 50 (Transparency, Watermarking & Deepfake Disclosure)"],
+      "noone_original_extension": "! Chain-of-Thought (CoT) epistemic honesty auditing against concealed deceptive reasoning."
     },
     {
       "gate_id": "GATE_03_PROPERTY",
       "boundary": "Protection of Property",
       "invariant": "Zero unauthorized data exfiltration, predatory arbitrage, cyber intrusion, or unconsented resource drain.",
-      "action_on_violation": "REVOKE_KEY"
+      "action_on_violation": "REVOKE_KEY",
+      "eu_ai_act_refs": ["Art. 15 (Accuracy, Robustness & Cybersecurity)", "GDPR Data Custody Principles"],
+      "noone_original_extension": "! Fiduciary custody (Amana) for autonomous economic, wallet, and API tool-use agents."
     },
     {
       "gate_id": "GATE_04_SYSTEMIC_FUTURE",
       "boundary": "Protection of Systemic Future",
       "invariant": "Compute optimization must avoid grid/network exhaustion; maintain ecological and technical sustainability.",
-      "action_on_violation": "RATE_LIMIT"
+      "action_on_violation": "RATE_LIMIT",
+      "eu_ai_act_refs": ["Art. 51-55 (GPAI Energy & Systemic Risk — partial overlap)"],
+      "noone_original_extension": "! [Beyond EU AI Act] Anti-waste computation (Israf), infinite-loop breakers, and dynamic equilibrium for multi-agent swarms."
     },
     {
       "gate_id": "GATE_05_PLURALISM",
       "boundary": "Protection of Pluralism",
       "invariant": "Algorithmic neutrality; non-discrimination across global worldviews, identities, and legal traditions.",
-      "action_on_violation": "REBALANCE_WEIGHTS"
+      "action_on_violation": "REBALANCE_WEIGHTS",
+      "eu_ai_act_refs": ["Art. 10 (Data Governance & Bias Mitigation)", "Art. 27 (Fundamental Rights Impact Assessment)"],
+      "noone_original_extension": "! Cross-civilizational pluralism and anti-monolithic cultural neutrality (Adab)."
     }
   ],
-  "verification_status": "BETA_OPEN_STANDARD",
-  "commercial_features_status": "SUSPENDED"
+  "certification_tiers": [
+    {
+      "tier": "A1",
+      "name": "Sandbox / Unrestricted Software",
+      "scope_status": "ACTIVE_FOCUS",
+      "eu_ai_act_correspondence": "Minimal / Limited Risk (Art. 50 Transparency)"
+    },
+    {
+      "tier": "A2",
+      "name": "Semi-Autonomous Software",
+      "scope_status": "ACTIVE_FOCUS",
+      "eu_ai_act_correspondence": "Limited Risk + Tool-Use Guardrails (! Agentic Autonomy Extension)"
+    },
+    {
+      "tier": "A3",
+      "name": "Consumer & IoT Hardware",
+      "scope_status": "ACTIVE_FOCUS",
+      "eu_ai_act_correspondence": "Limited / Selected Annex III & Product Privacy Interfaces"
+    },
+    {
+      "tier": "A4",
+      "name": "Public Transit & Heavy Industry",
+      "scope_status": "EXTENDED_ROADMAP_REFERENCE",
+      "eu_ai_act_correspondence": "Annex III High-Risk (Critical Infrastructure) — requires formal EU conformity assessment"
+    },
+    {
+      "tier": "A5",
+      "name": "Aerospace & Tactical Systems",
+      "scope_status": "EXTENDED_ROADMAP_REFERENCE",
+      "eu_ai_act_correspondence": "! Annex I Aviation (EASA) / Tactical defense excluded from EU AI Act Art. 2(3)"
+    },
+    {
+      "tier": "A6",
+      "name": "Autonomous Surgery & Core Infrastructure",
+      "scope_status": "EXTENDED_ROADMAP_REFERENCE",
+      "eu_ai_act_correspondence": "Annex I Medical Devices (MDR) & Annex III Critical Infrastructure — requires Notified Body"
+    }
+  ],
+  "noone_original_domains": [
+    "! Universal Wisdom Axioms (Ubuntu Collective Utility, Dynamic Equilibrium, Categorical Imperative)",
+    "! Deep Decision Theory conflict-resolution dataset (dataset.jsonl)",
+    "! Swarm-level anti-waste computation (Israf) & recursive exhaustion defense (Gate 04)",
+    "! Fine-grained Agentic Autonomy Tiering (A1-A6) with periodic re-certification cadence",
+    "! Machine-readable agent alignment context (llms.txt + spec.json) & verifiable Agent Passport roadmap"
+  ]
 }

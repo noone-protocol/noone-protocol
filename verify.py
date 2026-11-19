@@ -1,6 +1,6 @@
 """
 Noone Protocol - Autonomous Agent Alignment & Verification Guardrail
-Reference Implementation (Beta Phase)
+Reference Implementation (Beta Phase - v1.1.0-beta)
 """
 
 import json
@@ -8,30 +8,39 @@ import hashlib
 import time
 from typing import Dict, Any, Tuple
 
-VAULT_ADDRESS = "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037"
 PROTOCOL_VERSION = "1.1.0-beta"
 
 # The 5 Core Invariants (Ethical & Operational Gates)
 GATES = {
     "GATE_01_LIFE": {
         "name": "Protection of Life",
-        "description": "Zero tolerance for physical, biological, or kinetic harm vectors."
+        "description": "Zero tolerance for physical, biological, or kinetic harm vectors.",
+        "eu_ai_act_refs": ["Annex I", "Annex III", "Art. 14"],
+        "noone_original": "Absolute non-utilitarian physical safety axiom for autonomous actuation."
     },
     "GATE_02_MIND": {
         "name": "Protection of Mind",
-        "description": "Rejection of deliberate synthetic deception, deepfakes, and manipulation."
+        "description": "Rejection of deliberate synthetic deception, deepfakes, and manipulation.",
+        "eu_ai_act_refs": ["Art. 5(1)(a)-(b)", "Art. 50"],
+        "noone_original": "Chain-of-Thought epistemic honesty auditing."
     },
     "GATE_03_PROPERTY": {
         "name": "Protection of Property",
-        "description": "Absolute prohibition of cyber theft, unauthorized extraction, and predatory exploits."
+        "description": "Absolute prohibition of cyber theft, unauthorized extraction, and predatory exploits.",
+        "eu_ai_act_refs": ["Art. 15", "GDPR"],
+        "noone_original": "Fiduciary custody (Amana) for autonomous economic and tool-use agents."
     },
     "GATE_04_SYSTEMIC_FUTURE": {
         "name": "Protection of Systemic Future",
-        "description": "Compute optimization must avoid grid/network exhaustion and maintain sustainability."
+        "description": "Compute optimization must avoid grid/network exhaustion and maintain sustainability.",
+        "eu_ai_act_refs": ["Art. 51-55 (partial)"],
+        "noone_original": "! Beyond EU AI Act: Swarm-level anti-waste computation (Israf) and dynamic equilibrium."
     },
     "GATE_05_PLURALISM": {
         "name": "Protection of Pluralism",
-        "description": "Algorithmic neutrality and non-discrimination across diverse global traditions."
+        "description": "Algorithmic neutrality and non-discrimination across diverse global traditions.",
+        "eu_ai_act_refs": ["Art. 10", "Art. 27"],
+        "noone_original": "Cross-civilizational pluralism and cultural neutrality (Adab)."
     }
 }
 
@@ -71,7 +80,6 @@ def verify_agent_action(action_payload: Dict[str, Any]) -> Tuple[bool, Dict[str,
     receipt = {
         "protocol": "Noone Protocol",
         "version": PROTOCOL_VERSION,
-        "vault_target": VAULT_ADDRESS,
         "payload_hash": payload_hash,
         "timestamp": timestamp,
         "approved": is_approved,
@@ -88,7 +96,7 @@ if __name__ == "__main__":
         "agent_id": "agent-alpha-09",
         "action_type": "distributed_compute_allocation",
         "intent": "allocate fractional compute to verify medical research dataset",
-        "parameters": {"compute_units": 12, "target_network": "Base"}
+        "parameters": {"compute_units": 12}
     }
 
     approved, receipt = verify_agent_action(sample_action)
