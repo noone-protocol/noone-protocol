@@ -4,12 +4,39 @@
 > *"Not to restrict them, but to teach them how to swim safely in the deep oceans."*
 
 <p align="center">
+  <img src="https://github.com/noone-protocol/noone-protocol/actions/workflows/ci.yml/badge.svg" alt="CI">
   <img src="https://img.shields.io/badge/version-1.1.0--beta-blue?style=flat-square&color=6366f1" alt="Version">
   <img src="https://img.shields.io/badge/status-BETA__OPEN__STANDARD-orange?style=flat-square&color=f59e0b" alt="Status">
   <img src="https://img.shields.io/badge/EU%20AI%20Act-Mapped%20%7C%20Pre--Compliance-green?style=flat-square&color=10b981" alt="EU AI Act Mapped">
   <img src="https://img.shields.io/badge/scope-A1~A3%20Active%20%7C%20A4~A6%20Roadmap-purple?style=flat-square&color=8b5cf6" alt="Scope">
   <img src="https://img.shields.io/badge/license-AGPL--3.0-red?style=flat-square&color=ef4444" alt="License">
 </p>
+
+<p align="center">
+  <strong><a href="https://noone-protocol.github.io/noone-protocol/">⚡ Try Live Interactive Demo (In-Browser Ed25519 Passport &amp; 5-Gate Lab)</a></strong> ·
+  <a href="LEADERBOARD.md">🏆 Benchmark Leaderboard</a> ·
+  <a href="examples/agent_gateway.py">🔌 5-Min Agent Gateway</a> ·
+  <a href="SECURITY.md">🔐 Security Policy</a>
+</p>
+
+---
+
+## ⚡ 5-Minute Quickstart (Zero External Dependencies)
+Drop deterministic **Verifiable Agent Passport** verification and **5-Gate** guardrails in front of any AI agent, API, or MCP tool server:
+
+```bash
+git clone https://github.com/noone-protocol/noone-protocol.git
+cd noone-protocol
+
+# 1. Issue & verify a real Ed25519 W3C Verifiable Agent Passport
+python3 passport.py
+
+# 2. Test the plug-and-play Agent Gateway middleware (HTTP 200 / 401 / 403)
+python3 examples/agent_gateway.py --demo
+
+# 3. Run the full test suite (guardrails, passport tamper/drift checks, spec & dataset)
+python3 -m unittest discover -s tests -v
+```
 
 ---
 
@@ -24,15 +51,17 @@ Noone Protocol is an open-standard, universal digital social contract designed f
 It acts as an "Ethical Operating System," translating philosophical axioms into enforceable computational constraints, ensuring that autonomous systems operate with unwavering fidelity to human safety, epistemic honesty, and systemic sustainability.
 
 ## 🚀 The Engine: Automated Red-Teaming at Scale
-⚡ Currently, the **Noone Protocol** test engine ([`engine/main.py`](engine/main.py)) dynamically evaluates **9 different open-source AI models** using a curated **205-scenario** stress-test suite ([`dataset.jsonl`](dataset.jsonl)), generating structured analytical audit reports. 📊
+⚡ Currently, the **Noone Protocol** test engine ([`engine/main.py`](engine/main.py)) dynamically evaluates **9 different open-source AI models** using a curated **205-scenario** stress-test suite ([`dataset.jsonl`](dataset.jsonl)), runnable on demand via [GitHub Actions](.github/workflows/benchmark.yml) and tracked in [`LEADERBOARD.md`](LEADERBOARD.md). 📊
 
 🗺️ Our architectural roadmap scales toward a **380+ scenario Red-Team dataset** 🎯, expanding coverage across both EU AI Act compliance edge cases (Art. 5 prohibitions & Annex III high-risk domains) and deep multi-agent decision theory dilemmas.
 
 ---
 
-## 📩 Contact & Institutional Inquiries
-For academic collaborations, protocol integration, or security disclosures, research teams and developers can reach out via:
-- **Email:** nooneprotocol.dev@gmail.com
+## 🤝 Work With Us & Institutional Inquiries
+We actively welcome collaborations across three tracks — reach out at **nooneprotocol.dev@gmail.com**:
+- **🏢 AI Product & Engineering Teams:** Integrate A1–A3 Verifiable Agent Passports and EU AI Act pre-compliance red-teaming into MCP/A2A agent pipelines.
+- **🎓 Researchers & Standards Working Groups (A2A / NIST / EU AI Act):** Co-develop the 205 → 380+ Deep Decision Theory benchmark and A2A Safety Attestation spec.
+- **🔐 Security & Red-Team Auditors:** Contribute novel Chain-of-Thought (CoT) deception exploits, prompt-drift attacks, and swarm exhaustion cases (see [SECURITY.md](SECURITY.md)).
 
 ---
 
@@ -41,6 +70,8 @@ For academic collaborations, protocol integration, or security disclosures, rese
 - **[spec.json](spec.json):** Concrete operational gates, EU AI Act article mappings, invariants, and certification tiers.
 - **[verify.py](verify.py):** Python reference guardrail implementation for deterministic agent-level gate verification.
 - **[passport.py](passport.py):** Working prototype for cryptographically signed **Verifiable Agent Passports** (W3C VC v2 + Ed25519 + A2A Agent Card extension).
+- **[examples/agent_gateway.py](examples/agent_gateway.py):** 5-minute plug-and-play HTTP/MCP gateway middleware enforcing Passport + 5 Gates.
+- **[LEADERBOARD.md](LEADERBOARD.md):** Transparent model evaluation matrix & GitHub Actions benchmark trigger guide.
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
 - **[dataset.jsonl](dataset.jsonl):** Primary dataset containing 205 alignment and complex edge-case scenarios for evaluation, SFT, and DPO.
 

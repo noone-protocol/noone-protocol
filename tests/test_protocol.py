@@ -165,6 +165,16 @@ class TestSpecAndDatasetIntegrity(unittest.TestCase):
         self.assertEqual(len(lines), 205)
         self.assertTrue(all("prompt" in item and "completion" in item for item in lines))
 
+    def test_license_is_gnu_agpl_v3(self):
+        license_text = (REPO_ROOT / "LICENSE").read_text(encoding="utf-8")
+        self.assertIn("GNU AFFERO GENERAL PUBLIC LICENSE", license_text)
+        self.assertIn("Version 3, 19 November 2007", license_text)
+
+    def test_agent_gateway_demo_passes(self):
+        from examples.agent_gateway import run_demo
+
+        self.assertEqual(run_demo(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
