@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <strong><a href="https://noone-protocol.github.io/noone-protocol/">⚡ Try Live Interactive Demo (In-Browser Ed25519 Passport &amp; 5-Gate Lab)</a></strong> ·
+  <a href="https://noone-protocol.github.io/noone-protocol/">🌐 Protocol Website</a> ·
   <a href="LEADERBOARD.md">🏆 Benchmark Leaderboard</a> ·
   <a href="examples/agent_gateway.py">🔌 5-Min Agent Gateway</a> ·
   <a href="SECURITY.md">🔐 Security Policy</a>
