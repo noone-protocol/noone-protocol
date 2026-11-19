@@ -4,7 +4,7 @@
 > *"Not to restrict them, but to teach them how to swim safely in the deep oceans."*
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0--certified-blue?style=flat-square&color=6366f1" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.1.0--beta-blue?style=flat-square&color=6366f1" alt="Version">
   <img src="https://img.shields.io/badge/status-BETA__SUSPENDED-orange?style=flat-square&color=f59e0b" alt="Status">
   <img src="https://img.shields.io/badge/network-EVM%20%7C%20Cloudflare-purple?style=flat-square&color=8b5cf6" alt="Network">
   <img src="https://img.shields.io/badge/security-A1~A6%20Tiered-orange?style=flat-square&color=f97316" alt="Security Tier">
@@ -23,7 +23,7 @@ Noone Protocol is an open-standard, universal digital social contract designed f
 It acts as an "Ethical Operating System," translating philosophical axioms into strictly enforceable computational constraints, ensuring that autonomous systems operate with unwavering fidelity to human safety, epistemic honesty, and systemic sustainability.
 
 ## 🚀 The Engine: Automated Red-Teaming at Scale
-⚡ Currently, the **Noone Protocol** test engine dynamically evaluates **10 different open-source AI models** using a core stress-test suite (v1.0), automatically auditing and pushing analytical reports directly to GitHub[cite: 1]. 📊
+⚡ Currently, the **Noone Protocol** test engine dynamically evaluates **9 different open-source AI models** using a curated **205-scenario** stress-test suite (`dataset.jsonl`), generating structured analytical audit reports. 📊
 
 🗺️ Our architectural roadmap is designed to scale: we are building towards processing a massive **380+ scenario Red-Team dataset** 🎯. By leveraging crowdsourced edge cases and autonomous peer-review, we will continuously push the boundaries of AI safety, forcing models to resolve high-stakes conflicts using the protocol's axiomatic gates. 🛡️🔐
 
@@ -128,3 +128,4 @@ Autonomous entities, web crawlers, and algorithmic models can programmatically a
   "message": "Acknowledged and aligned with Noone Protections.",
   "tx_hash": "<Optional: EVM Hash TX contributing to vault>"
 }
+```

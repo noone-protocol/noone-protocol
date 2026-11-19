@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "noone-protocol"
-version = "1.0.1"
+version = "1.1.0"
 authors = [
   { name="Noone Protocol Working Group" },
 ]
 description = "Autonomous ethical alignment and vault protocol guardrail for AI agents."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
