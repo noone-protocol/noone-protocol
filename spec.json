@@ -1,6 +1,7 @@
 {
   "protocol": "Noone Protocol",
   "version": "1.1.0-beta",
+  "license": "AGPL-3.0-only",
   "verification_status": "BETA_OPEN_STANDARD",
   "regulatory_alignment": {
     "primary_framework": "EU AI Act — Regulation (EU) 2024/1689 (as amended by Digital Omnibus Regulation (EU) 2026/1744)",

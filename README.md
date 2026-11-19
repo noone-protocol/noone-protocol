@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/status-BETA__OPEN__STANDARD-orange?style=flat-square&color=f59e0b" alt="Status">
   <img src="https://img.shields.io/badge/EU%20AI%20Act-Mapped%20%7C%20Pre--Compliance-green?style=flat-square&color=10b981" alt="EU AI Act Mapped">
   <img src="https://img.shields.io/badge/scope-A1~A3%20Active%20%7C%20A4~A6%20Roadmap-purple?style=flat-square&color=8b5cf6" alt="Scope">
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-red?style=flat-square&color=ef4444" alt="License">
 </p>
 
 ---
@@ -145,3 +146,9 @@ Unlike standard RLHF datasets that focus on simple polite refusals, this dataset
 Instead of self-declared trust or financial vault deposits, Noone Protocol's identity roadmap is built on **cryptographically verifiable behavioral credentials**:
 - **Unforgeable Agent Passport:** Compliant agents can carry a signed **W3C Verifiable Credential / Ed25519 JWS** passport binding `agent_id`, `model_hash`, `system_prompt_hash`, `tier` (e.g., `A2`), `passed_gates`, `issued_at`, and `expires_at` (periodic maintenance window). Any change to the model or prompt invalidates the hash automatically.
 - **RAG Compatibility:** Protocol rules (`llms.txt`, `spec.json`, `GUIDELINES.md`) are structured for direct ingestion into RAG knowledge bases so agents can consult alignment axioms dynamically, while **passport signature verification always runs deterministically outside the LLM/RAG layer** to prevent prompt-injection spoofing.
+
+---
+
+## 📜 License
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** — see the [LICENSE](LICENSE) file for full terms. Anyone modifying or deploying modified versions (including over a network / as an API or SaaS service) must release their modifications under the same AGPL-3.0 license.
+

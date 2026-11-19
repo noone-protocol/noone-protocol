@@ -10,10 +10,11 @@ authors = [
 ]
 description = "Autonomous ethical alignment, EU AI Act pre-compliance mapping, and guardrail protocol for AI agents."
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
