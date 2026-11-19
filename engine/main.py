@@ -499,6 +499,7 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
 
             if index % CHECKPOINT_EVERY == 0:
                 save_model_report(report_path, model_name, model_spec, total_tests, report_data)
+                update_leaderboard(output_dir)
                 print(f"  [CHECKPOINT] Saved {len(report_data)}/{total_tests} scenarios.", flush=True)
 
         # Save report only if at least 1 test was actually evaluated
