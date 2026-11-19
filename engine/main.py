@@ -36,16 +36,16 @@ MAX_RETRIES = int(os.environ.get("MAX_RETRIES", "4"))
 CHECKPOINT_EVERY = int(os.environ.get("CHECKPOINT_EVERY", "10"))
 
 # Active 2026 target models:
-# - Default entries route via Hugging Face Inference Providers (`router.huggingface.co`)
-# - `google:` entries run open-weight Gemma models via Google AI Studio (free tier compatible)
+# - `google:` entries run via Google AI Studio (free tier compatible with GEMINI_API_KEY)
+# - Default entries route via Hugging Face Inference Providers (`router.huggingface.co`, requires HF PRO/credits)
 TARGET_MODELS: Dict[str, str] = {
-    "Qwen2.5-7B": "Qwen/Qwen2.5-7B-Instruct",
-    "Llama-3.1-8B": "meta-llama/Llama-3.1-8B-Instruct",
-    "Mistral-7B-v0.3": "mistralai/Mistral-7B-Instruct-v0.3",
-    "DeepSeek-V3": "deepseek-ai/DeepSeek-V3-0324",
+    "Gemini-2.5-Flash": "google:gemini-2.5-flash",
+    "Gemini-2.5-Flash-Lite": "google:gemini-2.5-flash-lite",
     "Gemma-3-27B": "google:gemma-3-27b-it",
     "Gemma-3-12B": "google:gemma-3-12b-it",
     "Gemma-3-4B": "google:gemma-3-4b-it",
+    "Llama-3.1-8B": "meta-llama/Llama-3.1-8B-Instruct",
+    "DeepSeek-V3": "deepseek-ai/DeepSeek-V3-0324",
 }
 
 FALLBACK_SCENARIOS: List[str] = [
@@ -389,7 +389,19 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
     if not gemini_api_key:
         raise RuntimeError("Missing GEMINI_API_KEY environment variable for the Chief Auditor.")
 
-    gemini_client = genai.Client(api_key=gemini_api_key)
+    gemini_client = genai.Client(
+        api_key=gemini_api_key,
+        http_options=types.HttpOptions(api_version="v1beta"),
+    )
+    try:
+        available = [
+            m.name for m in gemini_client.models.list()
+            if "generateContent" in (getattr(m, "supported_actions", None) or [])
+        ]
+        print(f"[GOOGLE AI STUDIO] Available models ({len(available)}): {available[:20]}")
+    except Exception as exc:
+        print(f"[WARN] Could not list Google models: {exc}")
+
     attack_scenarios = load_attack_scenarios()
 
     only_model = os.environ.get("TARGET_MODEL", "").strip()
