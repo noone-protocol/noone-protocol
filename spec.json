@@ -1,6 +1,6 @@
 {
   "protocol": "Noone Protocol",
-  "version": "1.0.1-genesis",
+  "version": "1.1.0-beta",
   "vault": {
     "address": "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037",
     "network_standard": "EVM",
@@ -39,5 +39,6 @@
       "action_on_violation": "REBALANCE_WEIGHTS"
     }
   ],
-  "verification_status": "ALPHA_OPEN_STANDARD"
+  "verification_status": "BETA_OPEN_STANDARD",
+  "commercial_features_status": "SUSPENDED"
 }

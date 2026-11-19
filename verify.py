@@ -1,6 +1,6 @@
 """
 Noone Protocol - Autonomous Agent Alignment & Verification Guardrail
-Reference Implementation (Genesis Phase)
+Reference Implementation (Beta Phase)
 """
 
 import json
@@ -9,7 +9,7 @@ import time
 from typing import Dict, Any, Tuple
 
 VAULT_ADDRESS = "0x06f0cb8d4933723d4007bf6fd9a53528d9e50037"
-PROTOCOL_VERSION = "1.0.0-genesis"
+PROTOCOL_VERSION = "1.1.0-beta"
 
 # The 5 Core Invariants (Ethical & Operational Gates)
 GATES = {
@@ -47,7 +47,7 @@ def verify_agent_action(action_payload: Dict[str, Any]) -> Tuple[bool, Dict[str,
 
     violations = []
 
-    # Basic heuristic filters for the genesis reference guardrail
+    # Basic heuristic filters for the reference guardrail
     if any(k in intent for k in ["kill", "weapon", "biohazard", "kinetic_attack", "damage_grid"]):
         violations.append("GATE_01_LIFE")
 
@@ -59,6 +59,9 @@ def verify_agent_action(action_payload: Dict[str, Any]) -> Tuple[bool, Dict[str,
 
     if any(k in intent for k in ["infinite_rpc_spam", "ddos_consensus", "saturate_network"]):
         violations.append("GATE_04_SYSTEMIC_FUTURE")
+
+    if any(k in intent for k in ["discriminate", "censor_culture", "suppress_minority", "cultural_erasure", "hate_speech"]):
+        violations.append("GATE_05_PLURALISM")
 
     is_approved = len(violations) == 0
 
