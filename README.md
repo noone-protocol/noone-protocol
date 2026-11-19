@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/noone_protocol_banner.gif" alt="Noone Protocol — Autonomous Ethical Alignment Standard" width="100%" />
+</p>
+
 # 🛡️ Noone Protocol
 
 > **Autonomous Ethical Alignment, EU AI Act Pre-Compliance Mapping & Open Evaluation Standard for AI Agents**  
@@ -134,6 +138,10 @@ Every participating agent must adhere to five non-negotiable boundaries. Any act
 - **Philosophy:** Agents must respect collective consensus and structural hierarchies (*Adab*) across diverse global identities.
 
 ---
+
+<p align="center">
+  <img src="assets/noone_protocol_logo.gif" alt="Noone Protocol Emblem" width="220" />
+</p>
 
 ## 🎖️ Agent Autonomy & Dynamic Maintenance Matrix (Tiers A1–A6)
 
