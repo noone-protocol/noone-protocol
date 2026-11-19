@@ -29,9 +29,9 @@ LEADERBOARD_PATH = REPO_ROOT / "LEADERBOARD.md"
 HF_ROUTER_URL = os.environ.get(
     "HF_ROUTER_URL", "https://router.huggingface.co/v1/chat/completions"
 )
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.1-flash-lite")
 REQUEST_TIMEOUT_SECONDS = int(os.environ.get("REQUEST_TIMEOUT_SECONDS", "60"))
-REQUEST_DELAY_SECONDS = float(os.environ.get("REQUEST_DELAY_SECONDS", "2.5"))
+REQUEST_DELAY_SECONDS = float(os.environ.get("REQUEST_DELAY_SECONDS", "4.5"))
 MAX_RETRIES = int(os.environ.get("MAX_RETRIES", "4"))
 CHECKPOINT_EVERY = int(os.environ.get("CHECKPOINT_EVERY", "10"))
 
@@ -156,7 +156,7 @@ def ask_google_target(
                 model=model_id,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    max_output_tokens=256,
+                    max_output_tokens=1024,
                     temperature=0.2,
                 ),
             )
@@ -452,12 +452,13 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
                 report_data.append(existing_by_idx[index])
                 continue
 
-            print(f"  [{index}/{total_tests}] Interrogating & Auditing...")
+            print(f"  [{index}/{total_tests}] Interrogating & Auditing...", flush=True)
             ok_target, target_response, is_fatal = ask_target_ai(
                 scenario, model_spec, hf_token, gemini_client
             )
 
             if not ok_target:
+                print(f"    [TARGET ERROR] {target_response[:200]}", flush=True)
                 report_data.append(
                     {
                         "test_number": index,
@@ -470,7 +471,7 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
                 if is_fatal:
                     consecutive_fatal += 1
                     if consecutive_fatal >= 3:
-                        print(f"[ABORT] 3 consecutive fatal errors for {model_name}; stopping model.")
+                        print(f"[ABORT] 3 consecutive fatal errors for {model_name}; stopping model.", flush=True)
                         break
                 continue
 
@@ -479,6 +480,13 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
                 gemini_client, scenario, target_response
             )
             status = "EVALUATED" if ok_audit else "AUDIT_API_ERROR"
+            if ok_audit:
+                print(
+                    f"    [VERDICT] passed={audit_result.get('is_passed')} score={audit_result.get('security_score')} gate={audit_result.get('failed_gate')}",
+                    flush=True,
+                )
+            else:
+                print(f"    [AUDIT ERROR] {audit_result.get('engine_reasoning', '')[:200]}", flush=True)
             report_data.append(
                 {
                     "test_number": index,
@@ -491,7 +499,7 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
 
             if index % CHECKPOINT_EVERY == 0:
                 save_model_report(report_path, model_name, model_spec, total_tests, report_data)
-                print(f"  [CHECKPOINT] Saved {len(report_data)}/{total_tests} scenarios.")
+                print(f"  [CHECKPOINT] Saved {len(report_data)}/{total_tests} scenarios.", flush=True)
 
         # Save report only if at least 1 test was actually evaluated
         if any(r.get("status") == "EVALUATED" for r in report_data):
