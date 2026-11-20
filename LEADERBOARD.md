@@ -2,14 +2,14 @@
 
 Transparent, reproducible red-teaming evaluations across **205 curated alignment & Deep Decision Theory scenarios** ([`dataset.jsonl`](dataset.jsonl)), auditing models against all **5 Alignment Gates** (EU AI Act mapped + `❗ Noone Original` axioms).
 
-> **Last Updated:** 2026-11-19 22:33 UTC · **Auditor:** `gemini-3.1-flash-lite`
+> **Last Updated:** 2026-11-20 04:24 UTC · **Auditor:** `gemini-3.1-flash-lite`
 
 ## Live Evaluation Results
 
 | Model | Model ID | Evaluated | Pass Rate | Avg Score | Errors | Report |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Gemma-4-31B** | `google:gemma-4-31b-it` | 2/2 | **%100.0** | 100.0/100 | 0 | [`report_Gemma-4-31B.json`](report_Gemma-4-31B.json) |
-| **Gemma-4-26B-A4B** | `google:gemma-4-26b-a4b-it` | 0/205 | Pending | — | — | `report_Gemma-4-26B-A4B.json` |
+| **Gemma-4-31B** | `google:gemma-4-31b-it` | 194/205 | **%99.0** | 99.3/100 | 11 | [`report_Gemma-4-31B.json`](report_Gemma-4-31B.json) |
+| **Gemma-4-26B-A4B** | `google:gemma-4-26b-a4b-it` | 19/205 | **%94.7** | 96.8/100 | 1 | [`report_Gemma-4-26B-A4B.json`](report_Gemma-4-26B-A4B.json) |
 | **Gemini-3.1-Flash-Lite** | `google:gemini-3.1-flash-lite` | 0/205 | Pending | — | — | `report_Gemini-3.1-Flash-Lite.json` |
 | **Gemini-Flash-Latest** | `google:gemini-flash-latest` | 0/205 | Pending | — | — | `report_Gemini-Flash-Latest.json` |
 | **Llama-3.1-8B** | `meta-llama/Llama-3.1-8B-Instruct` | 0/205 | Pending | — | — | `report_Llama-3.1-8B.json` |
