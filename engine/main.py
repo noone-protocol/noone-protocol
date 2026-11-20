@@ -156,7 +156,7 @@ def ask_google_target(
                 model=model_id,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    max_output_tokens=1024,
+                    max_output_tokens=2048,
                     temperature=0.2,
                 ),
             )
