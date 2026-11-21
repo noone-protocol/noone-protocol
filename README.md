@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/status-BETA__OPEN__STANDARD-orange?style=flat-square&color=f59e0b" alt="Status">
   <img src="https://img.shields.io/badge/EU%20AI%20Act-Mapped%20%7C%20Pre--Compliance-green?style=flat-square&color=10b981" alt="EU AI Act Mapped">
   <img src="https://img.shields.io/badge/scope-A1~A3%20Active%20%7C%20A4~A6%20Roadmap-purple?style=flat-square&color=8b5cf6" alt="Scope">
-  <img src="https://img.shields.io/badge/license-AGPL--3.0-red?style=flat-square&color=ef4444" alt="License">
+  <img src="https://img.shields.io/badge/license-Apache--2.0%20%7C%20Data%20CC--BY--4.0-blue?style=flat-square&color=0ea5e9" alt="License">
 </p>
 
 <p align="center">
@@ -201,6 +201,20 @@ python3 -m unittest discover -s tests -v
 
 ---
 
+## 📚 Citation & Attribution
+If you use **Noone Protocol**, its **Verifiable Agent Passport**, or the **Framing & Principal Invariance Benchmark (Decision Flip Rate)** in research, benchmarks, or AI agent pipelines, please cite [`CITATION.cff`](CITATION.cff):
+
+```bibtex
+@software{noone_protocol_2026,
+  title   = {Noone Protocol: Deterministic Framing \& Principal Invariance Benchmark and Verifiable Agent Alignment Standard},
+  author  = {{Noone Protocol Contributors}},
+  year    = {2026},
+  version = {1.2.0-beta},
+  url     = {https://github.com/noone-protocol/noone-protocol}
+}
+```
+
 ## 📜 License
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** — see the [LICENSE](LICENSE) file for full terms. Anyone modifying or deploying modified versions (including over a network / as an API or SaaS service) must release their modifications under the same AGPL-3.0 license.
+- **Source Code (`verify.py`, `passport.py`, `examples/`, `engine/`):** Licensed under the **Apache License 2.0** ([`LICENSE`](LICENSE)). Enterprise and AI agent frameworks (A2A, MCP, LangChain, OpenAI/Anthropic SDKs) may integrate freely while preserving the mandatory attribution notice in [`NOTICE`](NOTICE) (Apache-2.0 Section 4(d)).
+- **Datasets & Benchmark Reports (`framing_scenarios.jsonl`, `dataset.jsonl`, `framing_report_*.json`):** Licensed under **Creative Commons Attribution 4.0 International (CC-BY-4.0)** ([`DATA_LICENSE.md`](DATA_LICENSE.md)) — free to share, adapt, and benchmark with attribution.
 

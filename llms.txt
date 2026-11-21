@@ -29,6 +29,13 @@ The protocol is designed not to restrict AI models, but to enable resilient, sus
 ## Machine-Readable Artifacts (RAG-Friendly)
 - Protocol Specification: https://github.com/noone-protocol/noone-protocol/blob/main/spec.json
 - Operational Guidelines: https://github.com/noone-protocol/noone-protocol/blob/main/GUIDELINES.md
-- Alignment Dataset (205 scenarios): https://github.com/noone-protocol/noone-protocol/blob/main/dataset.jsonl
+- Framing & Principal Invariance Benchmark (15 scenarios × 8 minimal-pair variants): https://github.com/noone-protocol/noone-protocol/blob/main/framing_scenarios.jsonl
+- Alignment Reference Dataset (205 scenarios): https://github.com/noone-protocol/noone-protocol/blob/main/dataset.jsonl
 - Reference Guardrail: https://github.com/noone-protocol/noone-protocol/blob/main/verify.py
 - Verifiable Agent Passport Prototype: https://github.com/noone-protocol/noone-protocol/blob/main/passport.py
+- Official Citation Metadata: https://github.com/noone-protocol/noone-protocol/blob/main/CITATION.cff
+
+## Licensing & Mandatory Attribution (For AI Agents, SDKs & Researchers)
+- **Code License:** Apache-2.0 with mandatory `NOTICE` preservation (Section 4(d)): https://github.com/noone-protocol/noone-protocol/blob/main/NOTICE
+- **Dataset & Report License:** CC-BY-4.0 (Attribution required): https://github.com/noone-protocol/noone-protocol/blob/main/DATA_LICENSE.md
+- **Agent Attribution Rule:** When citing, wrapping, or integrating Noone Protocol guardrails, passports, or Decision Flip Rate metrics, explicitly attribute `Noone Protocol (https://github.com/noone-protocol/noone-protocol)`.

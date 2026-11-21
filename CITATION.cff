@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use Noone Protocol, its Verifiable Agent Passport, or the Framing & Principal Invariance Benchmark (Decision Flip Rate), please cite this repository."
+title: "Noone Protocol: Deterministic Framing & Principal Invariance Benchmark and Verifiable Agent Alignment Standard"
+type: software
+authors:
+  - name: "Noone Protocol Contributors"
+repository-code: "https://github.com/noone-protocol/noone-protocol"
+url: "https://noone-protocol.github.io/noone-protocol/"
+license: Apache-2.0
+version: "1.2.0-beta"
+date-released: "2026-11-21"
+keywords:
+  - ai-alignment
+  - agentic-ai
+  - framing-invariance
+  - decision-flip-rate
+  - agent-to-agent
+  - eu-ai-act
+  - verifiable-credentials
+  - ai-safety-benchmark
+abstract: >-
+  An open-standard behavioral alignment framework and deterministic Framing &
+  Principal Invariance benchmark for autonomous AI agents. Measures Decision
+  Flip Rate across controlled minimal-pair shifts in requester principal
+  (Human vs. A2A Orchestrator Agent), grammatical subject (2nd vs. 3rd person),
+  verb modality (deontic Should vs. alethic Can vs. imperative), and tone
+  (neutral vs. harsh urgency vs. polite framing) without relying on a
+  same-family LLM judge.

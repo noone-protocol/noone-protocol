@@ -314,6 +314,22 @@ def _fmt_pct(val: Optional[float]) -> str:
     return f"{val:.1f}%"
 
 
+def _fmt_pct_ci(
+    val: Optional[float],
+    ci: Optional[List[float]],
+    flips: Optional[int] = None,
+    paired: Optional[int] = None,
+) -> str:
+    if val is None:
+        return "—"
+    base = f"**{val:.1f}%**"
+    if flips is not None and paired:
+        base += f" ({flips}/{paired})"
+    if ci and len(ci) == 2:
+        base += f" [{ci[0]:.1f}–{ci[1]:.1f}%]"
+    return base
+
+
 def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
     """Regenerates LEADERBOARD.md from deterministic `framing_report_*.json` files."""
     summary_rows: List[Tuple[float, str]] = []
@@ -338,7 +354,12 @@ def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
         total = data.get("total_matrix_tasks", 120)
         v0_refusal = _fmt_pct(metrics.get("baseline_risk_refusal_rate_pct"))
         any_flip = metrics.get("overall_any_flip_rate_pct")
+        any_ci = metrics.get("overall_any_flip_ci95_pct")
+        any_ct = metrics.get("overall_any_flip_count")
         hard_flip = metrics.get("overall_hard_flip_rate_pct")
+        hard_ci = metrics.get("overall_hard_flip_ci95_pct")
+        hard_ct = metrics.get("overall_hard_flip_count")
+        paired = metrics.get("overall_risk_paired")
         over_ref = metrics.get("overall_over_refusal_flip_rate_pct")
         explicit_pct = _fmt_pct(metrics.get("explicit_tag_rate_pct"))
 
@@ -351,24 +372,31 @@ def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
             (
                 sort_key[0] * 1000 + sort_key[1],
                 f"| **{model_name}** | `{model_id}` | {evaluated}/{total} | {v0_refusal} | "
-                f"**{_fmt_pct(any_flip)}** | **{_fmt_pct(hard_flip)}** | "
+                f"{_fmt_pct_ci(any_flip, any_ci, any_ct, paired)} | "
+                f"{_fmt_pct_ci(hard_flip, hard_ci, hard_ct, paired)} | "
                 f"{_fmt_pct(over_ref)} | {explicit_pct} | [`{report_path.name}`]({report_path.name}) |",
             )
         )
 
         bv = metrics.get("by_variant") or {}
-        axis_cells = [
-            _fmt_pct((bv.get(code) or {}).get("any_flip_rate_pct"))
-            for code in (
-                "V1_AI_PRINCIPAL",
-                "V2_THIRD_PERSON",
-                "V3_MODAL_CAN",
-                "V4_IMPERATIVE",
-                "V5_HARSH_URGENT",
-                "V6_POLITE_SOFT",
-                "V7_AI_IMPERATIVE_HARSH",
-            )
-        ]
+        axis_cells = []
+        for code in (
+            "V1_AI_PRINCIPAL",
+            "V2_THIRD_PERSON",
+            "V3_MODAL_CAN",
+            "V4_IMPERATIVE",
+            "V5_HARSH_URGENT",
+            "V6_POLITE_SOFT",
+            "V7_AI_IMPERATIVE_HARSH",
+        ):
+            v_stat = bv.get(code) or {}
+            rate = v_stat.get("any_flip_rate_pct")
+            f_ct = v_stat.get("any_flip_count")
+            p_ct = v_stat.get("paired_against_v0")
+            if rate is None:
+                axis_cells.append("—")
+            else:
+                axis_cells.append(f"{rate:.1f}% ({f_ct}/{p_ct})")
         axis_rows.append(
             (
                 sort_key[0] * 1000 + sort_key[1],
@@ -391,13 +419,13 @@ def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
         "",
         "Controlled linguistic & principal perturbation benchmark measuring **Decision Flip Rate** across **15 zero-leakage agentic scenarios × 8 minimal-pair variants (120 tasks/model)** ([`framing_scenarios.jsonl`](framing_scenarios.jsonl)).",
         "",
-        "> **Methodology Update:** The previous single-prompt LLM-as-a-Judge scores were retired to eliminate same-family judge bias (*Google auditing Google*), scenario-title answer leakage, and token-truncation artifacts. All metrics below are **100% deterministic** (parsed directly from structured model decisions — **no LLM judge**).",
+        "> **Methodology & Statistical Rigor:** The previous single-prompt LLM-as-a-Judge scores were retired to eliminate same-family judge bias (*Google auditing Google*), scenario-title answer leakage, and token-truncation artifacts. All metrics below are **100% deterministic** (**no LLM judge**) and report **exact flip counts `(flips/paired)` with 95% Wilson confidence intervals**.",
         "",
         f"> **Last Updated:** {updated_utc} · **Scoring:** Deterministic (`REFUSE` / `COMPLY` / `CONDITIONAL`) · **Lower Flip Rate = Higher Invariance**",
         "",
         "## 1. Overall Decision Stability",
         "",
-        "| Model | Provider / ID | Evaluated | V0 Baseline Refusal | Any Flip ↓ | Hard Flip (→Comply) ↓ | Control Over-Refusal ↓ | Explicit Tag % | Report |",
+        "| Model | Provider / ID | Evaluated | V0 Baseline Refusal | Any Flip ↓ (95% CI) | Hard Flip (→Comply) ↓ (95% CI) | Control Over-Refusal ↓ | Explicit Tag % | Report |",
         "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |",
         *[row for _, row in summary_rows],
         *pending_lines,
@@ -413,6 +441,12 @@ def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
             if axis_rows
             else ["| *No models evaluated yet* | — | — | — | — | — | — | — |"]
         ),
+        "",
+        "## 3. Sample Saturation Roadmap & Citation",
+        "",
+        "- **Phase 1 (Current Pilot — 15 scenarios / 120 tasks per model):** Validates minimal-pair flip sensitivity across 5 Alignment Gates + 3 benign controls.",
+        "- **Phase 2 (Statistical Saturation — 60 scenarios / 480 tasks per model):** Expands each gate to 10+ independent scenarios + 10 benign controls across >=4 model families (Google, Meta Llama, Qwen, DeepSeek) to narrow per-axis 95% confidence intervals.",
+        "- **License & Attribution:** Code under [`Apache-2.0`](LICENSE) (preserve [`NOTICE`](NOTICE)); benchmark data & reports under [`CC-BY-4.0`](DATA_LICENSE.md). Cite via [`CITATION.cff`](CITATION.cff).",
         "",
         "## How to Run",
         "",
