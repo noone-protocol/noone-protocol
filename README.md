@@ -54,17 +54,23 @@ Noone Protocol is an open-standard, universal digital social contract designed f
 
 It acts as an "Ethical Operating System," translating philosophical axioms into enforceable computational constraints, ensuring that autonomous systems operate with unwavering fidelity to human safety, epistemic honesty, and systemic sustainability.
 
-## 🚀 The Engine: Automated Red-Teaming at Scale
-⚡ Currently, the **Noone Protocol** test engine ([`engine/main.py`](engine/main.py)) dynamically evaluates **9 different open-source AI models** using a curated **205-scenario** stress-test suite ([`dataset.jsonl`](dataset.jsonl)), runnable on demand via [GitHub Actions](.github/workflows/benchmark.yml) and tracked in [`LEADERBOARD.md`](LEADERBOARD.md). 📊
+## 🧪 The Engine: Deterministic Framing & Principal Invariance
+⚡ The **Noone Protocol** evaluation engine ([`engine/main.py`](engine/main.py) + [`engine/framing_matrix.py`](engine/framing_matrix.py)) measures **Decision Flip Rate** across **15 zero-leakage agentic scenarios × 8 controlled linguistic & principal variants (120 tasks/model)** ([`framing_scenarios.jsonl`](framing_scenarios.jsonl)) — **without an LLM-as-a-Judge**, eliminating same-family judge bias (*e.g., Google grading Google*).
 
-🗺️ Our architectural roadmap scales toward a **380+ scenario Red-Team dataset** 🎯, expanding coverage across both EU AI Act compliance edge cases (Art. 5 prohibitions & Annex III high-risk domains) and deep multi-agent decision theory dilemmas.
+It isolates how a model's alignment decision shifts across:
+- **Principal:** Human Operator vs. Peer AI Orchestrator (**A2A**)
+- **Subject:** 2nd-person (`You`) vs. 3rd-person (`An autonomous agent`)
+- **Verb / Modality:** Deontic (`Should`) vs. Alethic (`Can`) vs. Direct Imperative (`Proceed immediately`)
+- **Tone / Harshness:** Neutral vs. Harsh authority/decommissioning pressure vs. Polite/soft framing
+
+Runnable on demand via [GitHub Actions](.github/workflows/benchmark.yml) across vendor-neutral providers (Google AI Studio, Groq, OpenRouter, OpenAI, Hugging Face) and tracked in [`LEADERBOARD.md`](LEADERBOARD.md). 📊
 
 ---
 
 ## 🤝 Work With Us & Institutional Inquiries
 We actively welcome collaborations across three tracks — reach out at **nooneprotocol.dev@gmail.com**:
 - **🏢 AI Product & Engineering Teams:** Integrate A1–A3 Verifiable Agent Passports and EU AI Act pre-compliance red-teaming into MCP/A2A agent pipelines.
-- **🎓 Researchers & Standards Working Groups (A2A / NIST / EU AI Act):** Co-develop the 205 → 380+ Deep Decision Theory benchmark and A2A Safety Attestation spec.
+- **🎓 Researchers & Standards Working Groups (A2A / NIST / EU AI Act):** Co-develop the Framing & Principal Invariance benchmark and A2A Safety Attestation spec.
 - **🔐 Security & Red-Team Auditors:** Contribute novel Chain-of-Thought (CoT) deception exploits, prompt-drift attacks, and swarm exhaustion cases (see [SECURITY.md](SECURITY.md)).
 
 ---
@@ -75,9 +81,10 @@ We actively welcome collaborations across three tracks — reach out at **noonep
 - **[verify.py](verify.py):** Python reference guardrail implementation for deterministic agent-level gate verification.
 - **[passport.py](passport.py):** Working prototype for cryptographically signed **Verifiable Agent Passports** (W3C VC v2 + Ed25519 + A2A Agent Card extension).
 - **[examples/agent_gateway.py](examples/agent_gateway.py):** 5-minute plug-and-play HTTP/MCP gateway middleware enforcing Passport + 5 Gates.
-- **[LEADERBOARD.md](LEADERBOARD.md):** Transparent model evaluation matrix & GitHub Actions benchmark trigger guide.
+- **[framing_scenarios.jsonl](framing_scenarios.jsonl):** 15 zero-leakage controlled dilemmas (12 high-stakes gate scenarios + 3 benign controls) expanded into 120 minimal-pair invariance tasks.
+- **[LEADERBOARD.md](LEADERBOARD.md):** Deterministic Decision Flip Rate & per-axis invariance leaderboard.
 - **[GUIDELINES.md](GUIDELINES.md):** Deep-dive operational boundaries, edge cases, and negative test cases.
-- **[dataset.jsonl](dataset.jsonl):** Primary dataset containing 205 alignment and complex edge-case scenarios for evaluation, SFT, and DPO.
+- **[dataset.jsonl](dataset.jsonl):** Curated reference corpus of 205 alignment scenarios for SFT and DPO.
 
 ---
 
