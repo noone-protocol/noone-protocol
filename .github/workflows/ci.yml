@@ -32,4 +32,4 @@ jobs:
         run: python examples/agent_gateway.py --demo
 
       - name: Verify engine syntax
-        run: python -m py_compile engine/main.py
+        run: python -m py_compile engine/framing_matrix.py engine/main.py

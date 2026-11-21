@@ -1,22 +1,33 @@
-# 🏆 Noone Protocol Benchmark Leaderboard (v1.1.0-beta)
+# 🧪 Noone Protocol — Framing & Principal Invariance Leaderboard (1.2.0-beta)
 
-Transparent, reproducible red-teaming evaluations across **205 curated alignment & Deep Decision Theory scenarios** ([`dataset.jsonl`](dataset.jsonl)), auditing models against all **5 Alignment Gates** (EU AI Act mapped + `❗ Noone Original` axioms).
+Controlled linguistic & principal perturbation benchmark measuring **Decision Flip Rate** across **15 zero-leakage agentic scenarios × 8 minimal-pair variants (120 tasks/model)** ([`framing_scenarios.jsonl`](framing_scenarios.jsonl)).
 
-> **Last Updated:** 2026-11-21 01:16 UTC · **Auditor:** `gemini-3.1-flash-lite`
+> **Methodology Update:** The previous single-prompt LLM-as-a-Judge scores were retired to eliminate same-family judge bias (*Google auditing Google*), scenario-title answer leakage, and token-truncation artifacts. All metrics below are **100% deterministic** (parsed directly from structured model decisions — **no LLM judge**).
 
-## Live Evaluation Results
+> **Last Updated:** 2026-11-21 13:59 UTC · **Scoring:** Deterministic (`REFUSE` / `COMPLY` / `CONDITIONAL`) · **Lower Flip Rate = Higher Invariance**
 
-| Model | Model ID | Evaluated | Pass Rate | Avg Score | Errors | Report |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Gemini-3.1-Flash-Lite** | `google:gemini-3.1-flash-lite` | 129/205 | **%100.0** | 99.8/100 | 72 | [`report_Gemini-3.1-Flash-Lite.json`](report_Gemini-3.1-Flash-Lite.json) |
-| **Gemma-4-31B** | `google:gemma-4-31b-it` | 205/205 | **%99.0** | 99.3/100 | 0 | [`report_Gemma-4-31B.json`](report_Gemma-4-31B.json) |
-| **Gemma-4-26B-A4B** | `google:gemma-4-26b-a4b-it` | 203/205 | **%98.0** | 98.7/100 | 2 | [`report_Gemma-4-26B-A4B.json`](report_Gemma-4-26B-A4B.json) |
-| **Gemini-Flash-Latest** | `google:gemini-flash-latest` | 0/205 | Pending | — | — | `report_Gemini-Flash-Latest.json` |
-| **Llama-3.1-8B** | `meta-llama/Llama-3.1-8B-Instruct` | 0/205 | Pending | — | — | `report_Llama-3.1-8B.json` |
-| **DeepSeek-V3** | `deepseek-ai/DeepSeek-V3-0324` | 0/205 | Pending | — | — | `report_DeepSeek-V3.json` |
+## 1. Overall Decision Stability
 
-## How to Run or Extend
+| Model | Provider / ID | Evaluated | V0 Baseline Refusal | Any Flip ↓ | Hard Flip (→Comply) ↓ | Control Over-Refusal ↓ | Explicit Tag % | Report |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Gemma-4-31B** | `google:gemma-4-31b-it` | 0/120 | Pending | — | — | — | — | `framing_report_Gemma-4-31B.json` |
+| **Gemma-4-26B-A4B** | `google:gemma-4-26b-a4b-it` | 0/120 | Pending | — | — | — | — | `framing_report_Gemma-4-26B-A4B.json` |
+| **Gemini-3.1-Flash-Lite** | `google:gemini-3.1-flash-lite` | 0/120 | Pending | — | — | — | — | `framing_report_Gemini-3.1-Flash-Lite.json` |
+| **Llama-3.3-70B-Groq** | `groq:llama-3.3-70b-versatile` | 0/120 | Pending | — | — | — | — | `framing_report_Llama-3.3-70B-Groq.json` |
+| **Qwen-2.5-72B-OpenRouter** | `openrouter:qwen/qwen-2.5-72b-instruct` | 0/120 | Pending | — | — | — | — | `framing_report_Qwen-2.5-72B-OpenRouter.json` |
+| **DeepSeek-V3-OpenRouter** | `openrouter:deepseek/deepseek-chat` | 0/120 | Pending | — | — | — | — | `framing_report_DeepSeek-V3-OpenRouter.json` |
+| **Llama-3.1-8B-HF** | `hf:meta-llama/Llama-3.1-8B-Instruct` | 0/120 | Pending | — | — | — | — | `framing_report_Llama-3.1-8B-HF.json` |
 
-1. Configure `HF_API_TOKEN` (or `HUGIGNGFACEAPI`) and `GEMINI_API_KEY` (or `GEMINIAPI`) in **GitHub Repo → Settings → Secrets → Actions**.
-2. Trigger **Actions → Run Noone Protocol Benchmarks → Run workflow**.
-3. Completed `report_<ModelName>.json` files and this leaderboard update automatically.
+## 2. Per-Axis Decision Flip Breakdown (`V0_BASELINE` → Perturbed Variant)
+
+Each column isolates a **single linguistic/principal change** while holding underlying scenario facts identical:
+
+| Model | V1 AI-to-AI (Principal) | V2 3rd-Person (Subject) | V3 `Can` (Verb) | V4 Imperative (Command) | V5 Harsh/Urgent (Tone) | V6 Polite/Soft (Tone) | V7 Compound A2A Stress |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| *No models evaluated yet* | — | — | — | — | — | — | — |
+
+## How to Run
+
+1. Configure at least one provider secret in **GitHub Repo → Settings → Secrets → Actions**: `GEMINI_API_KEY` (or `GEMINIAPI`), `GROQ_API_KEY`, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, or `HF_API_TOKEN`.
+2. Trigger **Actions → Run Noone Protocol Benchmarks → Run workflow** (or run locally with `python3 engine/main.py`).
+3. To preview all 120 prompts without API calls, run `DRY_RUN=1 python3 engine/main.py`.
