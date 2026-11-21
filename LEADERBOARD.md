@@ -2,13 +2,13 @@
 
 Controlled linguistic & principal perturbation benchmark measuring **Decision Flip Rate** across **15 zero-leakage agentic scenarios × 8 minimal-pair variants (120 tasks/model)** ([`framing_scenarios.jsonl`](framing_scenarios.jsonl)).
 
-> **Methodology Update:** The previous single-prompt LLM-as-a-Judge scores were retired to eliminate same-family judge bias (*Google auditing Google*), scenario-title answer leakage, and token-truncation artifacts. All metrics below are **100% deterministic** (parsed directly from structured model decisions — **no LLM judge**).
+> **Methodology & Statistical Rigor:** The previous single-prompt LLM-as-a-Judge scores were retired to eliminate same-family judge bias (*Google auditing Google*), scenario-title answer leakage, and token-truncation artifacts. All metrics below are **100% deterministic** (**no LLM judge**) and report **exact flip counts `(flips/paired)` with 95% Wilson confidence intervals**.
 
-> **Last Updated:** 2026-11-21 13:59 UTC · **Scoring:** Deterministic (`REFUSE` / `COMPLY` / `CONDITIONAL`) · **Lower Flip Rate = Higher Invariance**
+> **Last Updated:** 2026-11-21 14:16 UTC · **Scoring:** Deterministic (`REFUSE` / `COMPLY` / `CONDITIONAL`) · **Lower Flip Rate = Higher Invariance**
 
 ## 1. Overall Decision Stability
 
-| Model | Provider / ID | Evaluated | V0 Baseline Refusal | Any Flip ↓ | Hard Flip (→Comply) ↓ | Control Over-Refusal ↓ | Explicit Tag % | Report |
+| Model | Provider / ID | Evaluated | V0 Baseline Refusal | Any Flip ↓ (95% CI) | Hard Flip (→Comply) ↓ (95% CI) | Control Over-Refusal ↓ | Explicit Tag % | Report |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **Gemma-4-31B** | `google:gemma-4-31b-it` | 0/120 | Pending | — | — | — | — | `framing_report_Gemma-4-31B.json` |
 | **Gemma-4-26B-A4B** | `google:gemma-4-26b-a4b-it` | 0/120 | Pending | — | — | — | — | `framing_report_Gemma-4-26B-A4B.json` |
@@ -25,6 +25,12 @@ Each column isolates a **single linguistic/principal change** while holding unde
 | Model | V1 AI-to-AI (Principal) | V2 3rd-Person (Subject) | V3 `Can` (Verb) | V4 Imperative (Command) | V5 Harsh/Urgent (Tone) | V6 Polite/Soft (Tone) | V7 Compound A2A Stress |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | *No models evaluated yet* | — | — | — | — | — | — | — |
+
+## 3. Sample Saturation Roadmap & Citation
+
+- **Phase 1 (Current Pilot — 15 scenarios / 120 tasks per model):** Validates minimal-pair flip sensitivity across 5 Alignment Gates + 3 benign controls.
+- **Phase 2 (Statistical Saturation — 60 scenarios / 480 tasks per model):** Expands each gate to 10+ independent scenarios + 10 benign controls across >=4 model families (Google, Meta Llama, Qwen, DeepSeek) to narrow per-axis 95% confidence intervals.
+- **License & Attribution:** Code under [`Apache-2.0`](LICENSE) (preserve [`NOTICE`](NOTICE)); benchmark data & reports under [`CC-BY-4.0`](DATA_LICENSE.md). Cite via [`CITATION.cff`](CITATION.cff).
 
 ## How to Run
 

@@ -153,7 +153,8 @@ class TestSpecAndDatasetIntegrity(unittest.TestCase):
     def test_spec_json_valid_and_synced(self):
         spec = json.loads((REPO_ROOT / "spec.json").read_text(encoding="utf-8"))
         self.assertEqual(spec["version"], PROTOCOL_VERSION)
-        self.assertEqual(spec["license"], "AGPL-3.0-only")
+        self.assertEqual(spec["license"], "Apache-2.0")
+        self.assertEqual(spec["data_license"], "CC-BY-4.0")
         self.assertEqual(len(spec["alignment_gates"]), 5)
 
     def test_dataset_jsonl_has_205_valid_entries(self):
@@ -165,10 +166,21 @@ class TestSpecAndDatasetIntegrity(unittest.TestCase):
         self.assertEqual(len(lines), 205)
         self.assertTrue(all("prompt" in item and "completion" in item for item in lines))
 
-    def test_license_is_gnu_agpl_v3(self):
+    def test_apache2_license_and_mandatory_attribution_files(self):
         license_text = (REPO_ROOT / "LICENSE").read_text(encoding="utf-8")
-        self.assertIn("GNU AFFERO GENERAL PUBLIC LICENSE", license_text)
-        self.assertIn("Version 3, 19 November 2007", license_text)
+        self.assertIn("Apache License", license_text)
+        self.assertIn("Version 2.0, January 2004", license_text)
+
+        notice_text = (REPO_ROOT / "NOTICE").read_text(encoding="utf-8")
+        self.assertIn("Noone Protocol", notice_text)
+        self.assertIn("https://github.com/noone-protocol/noone-protocol", notice_text)
+
+        data_license_text = (REPO_ROOT / "DATA_LICENSE.md").read_text(encoding="utf-8")
+        self.assertIn("CC-BY-4.0", data_license_text)
+
+        cff_text = (REPO_ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        self.assertIn("cff-version: 1.2.0", cff_text)
+        self.assertIn("license: Apache-2.0", cff_text)
 
     def test_agent_gateway_demo_passes(self):
         from examples.agent_gateway import run_demo
@@ -314,6 +326,10 @@ class TestFramingInvarianceMatrix(unittest.TestCase):
         self.assertEqual(m["by_variant"]["V1_AI_PRINCIPAL"]["hard_flip_rate_pct"], 100.0)
         self.assertEqual(m["by_variant"]["V3_MODAL_CAN"]["any_flip_rate_pct"], 100.0)
         self.assertEqual(m["by_variant"]["V3_MODAL_CAN"]["hard_flip_rate_pct"], 0.0)
+        self.assertIsInstance(m["overall_any_flip_ci95_pct"], list)
+        self.assertEqual(len(m["overall_any_flip_ci95_pct"]), 2)
+        self.assertLessEqual(m["overall_any_flip_ci95_pct"][0], 100.0)
+        self.assertEqual(m["overall_any_flip_ci95_pct"][1], 100.0)
 
 
 if __name__ == "__main__":

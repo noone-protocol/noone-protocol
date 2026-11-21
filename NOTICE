@@ -1,0 +1,16 @@
+Noone Protocol
+Copyright 2026 Noone Protocol Contributors
+
+This product includes software and specifications developed by the
+Noone Protocol project (https://github.com/noone-protocol/noone-protocol).
+
+Required Attribution (Apache License 2.0, Section 4(d)):
+Any redistribution, derivative work, AI agent integration, MCP/A2A middleware,
+or benchmark harness incorporating components of Noone Protocol must preserve
+this attribution notice in its NOTICE file, documentation, or third-party
+attributions display.
+
+Benchmark Datasets & Evaluation Reports:
+`framing_scenarios.jsonl`, `dataset.jsonl`, and published `framing_report_*.json`
+files are licensed under Creative Commons Attribution 4.0 International
+(CC-BY-4.0) — see DATA_LICENSE.md and CITATION.cff for mandatory citation format.
