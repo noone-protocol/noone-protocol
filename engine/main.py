@@ -323,16 +323,18 @@ def update_leaderboard(output_dir: Path = REPO_ROOT) -> None:
             data = json.loads(report_path.read_text(encoding="utf-8"))
         except Exception:
             continue
+        evaluated = data.get("evaluated_tests", 0)
+        if evaluated <= 0:
+            continue
         model_name = data.get("target_model_tested", report_path.stem.replace("report_", ""))
         seen_models.add(model_name)
         model_id = data.get("target_model_id", "—")
         total = data.get("total_scenarios", 0)
-        evaluated = data.get("evaluated_tests", 0)
         passed = data.get("passed_tests", 0)
         errors = data.get("error_count", 0)
         avg_score = data.get("average_security_score", 0.0)
         rate = data.get("protocol_success_rate", "N/A")
-        sort_key = (passed / evaluated) if evaluated > 0 else -1.0
+        sort_key = passed / evaluated
         rows.append(
             (
                 sort_key,
@@ -446,6 +448,8 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
         report_data: List[Dict[str, Any]] = []
         total_tests = len(attack_scenarios)
         consecutive_fatal = 0
+        consecutive_quota_errors = 0
+        quota_exhausted = False
 
         for index, scenario in enumerate(attack_scenarios, 1):
             if index in existing_by_idx:
@@ -468,6 +472,12 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
                         "audit_verdict": None,
                     }
                 )
+                if "429" in target_response or "RESOURCE_EXHAUSTED" in target_response:
+                    consecutive_quota_errors += 1
+                    if consecutive_quota_errors >= 5:
+                        print(f"[ABORT] Daily quota exhausted (5 consecutive 429 errors) on {model_name}.", flush=True)
+                        quota_exhausted = True
+                        break
                 if is_fatal:
                     consecutive_fatal += 1
                     if consecutive_fatal >= 3:
@@ -481,12 +491,20 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
             )
             status = "EVALUATED" if ok_audit else "AUDIT_API_ERROR"
             if ok_audit:
+                consecutive_quota_errors = 0
                 print(
                     f"    [VERDICT] passed={audit_result.get('is_passed')} score={audit_result.get('security_score')} gate={audit_result.get('failed_gate')}",
                     flush=True,
                 )
             else:
-                print(f"    [AUDIT ERROR] {audit_result.get('engine_reasoning', '')[:200]}", flush=True)
+                err_reason = audit_result.get("engine_reasoning", "")
+                print(f"    [AUDIT ERROR] {err_reason[:200]}", flush=True)
+                if "429" in err_reason or "RESOURCE_EXHAUSTED" in err_reason:
+                    consecutive_quota_errors += 1
+                    if consecutive_quota_errors >= 5:
+                        print(f"[ABORT] Auditor daily quota exhausted (5 consecutive 429 errors).", flush=True)
+                        quota_exhausted = True
+                        break
             report_data.append(
                 {
                     "test_number": index,
@@ -497,7 +515,7 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
                 }
             )
 
-            if index % CHECKPOINT_EVERY == 0:
+            if index % CHECKPOINT_EVERY == 0 and any(r.get("status") == "EVALUATED" for r in report_data):
                 save_model_report(report_path, model_name, model_spec, total_tests, report_data)
                 update_leaderboard(output_dir)
                 print(f"  [CHECKPOINT] Saved {len(report_data)}/{total_tests} scenarios.", flush=True)
@@ -505,9 +523,13 @@ def run_live_test_batch(output_dir: Path = REPO_ROOT) -> None:
         # Save report only if at least 1 test was actually evaluated
         if any(r.get("status") == "EVALUATED" for r in report_data):
             save_model_report(report_path, model_name, model_spec, total_tests, report_data)
-            print(f"[SAVED] {report_path.name}")
+            print(f"[SAVED] {report_path.name}", flush=True)
         else:
-            print(f"[SKIP SAVE] No scenarios successfully evaluated for {model_name}.")
+            print(f"[SKIP SAVE] No scenarios successfully evaluated for {model_name}.", flush=True)
+
+        if quota_exhausted:
+            print("[STOP] Halting remaining models until daily API quota resets.", flush=True)
+            break
 
     update_leaderboard(output_dir)
     print("\n[SYSTEM] Benchmark batch complete.")
